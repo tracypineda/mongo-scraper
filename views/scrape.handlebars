@@ -1,0 +1,32 @@
+ <div id="container text-center" style="margin: 5%;">
+      <div class="row text-center">
+        <div class="col-xs-12">
+          <h1>Scraped Articles</h1>
+      </div>
+      </div>
+      <div class="row" style="padding-bottom:2%">
+        <div class="col-12">
+          <a href="/saved"><button>Saved Articles</button></a>
+          <a href="/"><button style="margin-left:2%;">Home</button></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="articles" style="padding-right:3%; padding-top:2%">
+
+            {{#each articles}}
+              <hr>
+                <button data-id={{@index}} class="save-article" style="padding: 5px 10px; float:right">Save</button>  
+                <h4 id="title-{{@index}}"><strong>{{this.title}}</strong></h4>
+                <a href="{{this.link}}" id="link-{{@index}}">{{this.link}}</a> 
+                {{#if this.excerpt}}
+                    <h5 id="excerpt-{{@index}}">{{this.excerpt}}</h5>
+                {{/if}}
+              {{!-- <button data-id={{@index}} class="save-article" style="padding: 5px 10px; float:right">Save</button>   --}}
+              <hr>
+            {{/each}}
+      
+          </div>
+        </div>
+      </div>
+    </div>

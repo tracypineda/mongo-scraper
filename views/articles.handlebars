@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-xs-12">
+      <h3>"{{data.title}}" Notes</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <a href="/saved"><button style="padding: 6px 12px; float:right; margin-left:1%">Saved Articles</button></a>
+      <a href="/"><button style="padding: 6px 12px; float:right;">Home</button></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="card mt-4">
+        <div class="card-body">
+            <form class="clearfix mb-4">
+              <div class="form-group">
+                <label for="title-note"><h4>Title</h4></label>
+                <input type="text" id="title-note" class="form-control" aria-describedby="example-text" placeholder="Title of note">
+              </div>
+              <div class="form-group">
+                <label for="note-description"><h4>Make a note on the article</h4></label>
+                <textarea class="form-control" id="note-description" rows="8" aria-describedby="note-description" placeholder="Your Comment"></textarea>
+              </div>
+              <br>
+              <button id="submit-note" data-id={{data._id}} style="padding: 5px 10px; float:right">Submit</button>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+        <h4>Previous Comments</h4>
+          {{#if data.note}}
+            {{#each data.note}}
+              <hr>
+              <button data-id={{this._id}} class="delete-note" style="padding: 5px 10px; float:right">Delete</button>
+              <h4><strong>{{this.title}}</strong></h4>
+              <h5>{{this.body}}</h5>
+              <hr>
+            {{/each}}
+          {{else}}
+            <h5>There are no comments on this article.</h5>
+          {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+#hero {
+    background-image: url("../img/IM-turtle.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    clear:both;
+    height: 40px;
+}
+
+.header a {
+    float:left;
+}
+
+.buttonDiv {
+    float:right;
+}
+
+.card-body div a {
+    font-size: 1.5rem;
+    color: #45454e;
+}
+
+.jumbotron {
+    border-radius: 0;
+}
