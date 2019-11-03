@@ -59,18 +59,17 @@ app.get("/scrape", function(req, res) {
           titleArr.push(dbArticle[i].title)
         }
         console.log(titleArr);
-        axios.get("https://www.ironman.com/#axzz63OTOjcNS").then(function (response) {
+        axios.get("https://www.npr.org/sections/news/").then(function (response) {
           var $ = cheerio.load(response.data);
 
-    $("article div .storyContent").each(function (i, element) {
+    $("body h2").each(function (i, element) {
             var result = {};
 
-            result.title = $(this).children("a").children("h5").text();
+            result.title = $(element).children("a").text();
       found = titleArr.includes(result.title);
       result.link = $(this).children("a").attr("href");
       result.excerpt = $(this)
-      .children("p")
-      .text();
+      result.excerpt = $(element).parent().children("p .teaser").text().trim();
       if (!found && result.title && result.link){
         results.push(result);
      }
