@@ -1,19 +1,26 @@
-<div id="container text-center" style="margin-left:5%">
-      <div class="row">
-        <div class="col-xs-12">
-          <h1><strong>Scrape the Universe Daily</strong></h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <button id="scrape-button">Scrape for Articles in the Daily Universe</button>
-          <a href="/saved"><button style="margin-left:2%;">Saved Articles</button></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6"></div>     
-        <div class="col-xs-6">
-            <div id="logo" style="margin-left: 200px; margin-top: 30px;"></div>
-        </div>
-      </div>
-    </div>
+<div id="articlesSection" class="col s9">
+	<span id="articlesTitle"> SAVED STORIES </span>
+	<div id="articlesDiv">
+
+		{{#if articles}}
+
+			{{#each articles}}
+              <hr>
+                <button data-id={{@index}} class="save-article" style="padding: 5px 10px; float:right">Save</button>  
+                <h4 id="title-{{@index}}"><strong>{{this.title}}</strong></h4>
+                <a href="{{this.link}}" id="link-{{@index}}">{{this.link}}</a> 
+                {{#if this.excerpt}}
+                    <h5 id="excerpt-{{@index}}">{{this.excerpt}}</h5>
+                {{/if}}
+           
+            {{/each}}
+
+		{{else}}
+
+		    <p class="text-center"> There are no saved articles to display. </p>
+		    
+		{{/if}}
+
+	</div>
+</div>
+		

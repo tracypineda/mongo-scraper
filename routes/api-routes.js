@@ -70,6 +70,41 @@ module.exports = function (app, axios, cheerio) {
     })
   });
 
+// gets saved articles from db and displays them
+app.get("/saved", function(req, res) {
+  Articles.find({"status": 1}, function(err, data) {
+      if (err) { 
+          console.log(err);
+      } else {
+          res.render("saved", {articles: data, saved: true});
+      }
+  });
+});
+
+// assigns saved status to article 
+app.post("/save", function(req, res) {
+  Articles.findOneAndUpdate({"_id": req.body.articleId}, {$set : {"status": 1}})
+  .exec(function(err, data) {
+      if (err) {
+          console.log(err);
+      } else {
+          res.send("Post successful");
+      }
+  });
+});
+
+// removes articles from saved status 
+app.post("/unsave", function(req, res) {
+  Articles.findOneAndUpdate({"_id": req.body.articleId}, {$set : {"status": 0}})
+  .exec(function(err, data) {
+      if (err) {
+          console.log(err);
+      } else {
+          res.send("Post successful");
+      }
+  });
+});
+
   app.put("/api/articles/:id", function (req, res) {
     // Grab every document in the Articles collection
         db.Article.findOne({
