@@ -1,26 +1,25 @@
 <div id="articlesSection" class="col s9">
-	<span id="articlesTitle"> SAVED STORIES </span>
-	<div id="articlesDiv">
+  <span id="articlesTitle"> SAVED STORIES </span>
+  <div id="articlesDiv">
 
-		{{#if articles}}
+    {{#if articles}}
 
-			{{#each articles}}
-              <hr>
-                <button data-id={{@index}} class="save-article" style="padding: 5px 10px; float:right">Save</button>  
-                <h4 id="title-{{@index}}"><strong>{{this.title}}</strong></h4>
-                <a href="{{this.link}}" id="link-{{@index}}">{{this.link}}</a> 
-                {{#if this.excerpt}}
-                    <h5 id="excerpt-{{@index}}">{{this.excerpt}}</h5>
-                {{/if}}
-           
-            {{/each}}
+    {{#each articles}}
+    <hr>
 
-		{{else}}
+    <h4 id="title-{{@index}}"><strong>{{this.title}}</strong></h4>
+    <a href="{{this.link}}" id="link-{{@index}}">{{this.link}}</a>
 
-		    <p class="text-center"> There are no saved articles to display. </p>
-		    
-		{{/if}}
+    <h5 id="excerpt-{{@index}}">{{this.excerpt}}</h5>
 
-	</div>
+
+    {{/each}}
+
+    {{else}}
+
+    <p class="text-center"> There are no saved articles to display. </p>
+
+    {{/if}}
+
+  </div>
 </div>
-		

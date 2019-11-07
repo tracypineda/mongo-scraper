@@ -16,6 +16,10 @@ var ArticleSchema = new Schema({
   excerpt: {
     type: String
   },
+  status: {
+    type: Boolean,
+    default: false
+  },
   // `note` is an array that stores a Note id
   note: [{
     type: Schema.Types.ObjectId,

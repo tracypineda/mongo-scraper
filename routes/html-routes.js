@@ -25,7 +25,7 @@ module.exports = function (app) {
          res.render("saved");
 
         db.Article.find({
-            saved: true
+            status: true
           })
           .then(function (dbSaved) {
             // If we were able to successfully find Articles, send them back to the client

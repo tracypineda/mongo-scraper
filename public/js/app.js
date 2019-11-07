@@ -1,4 +1,5 @@
 //Scrape Articles for client to check
+console.log("this is loaded");
 $(document).on("click", "#scrape-button", function() {
     $.ajax({
       method: "GET",
@@ -24,16 +25,19 @@ $(document).on("click", "#scrape-button", function() {
   //Save an article
   $(document).on("click", ".save-article", function() {
     var thisId = $(this).attr("data-id");
+    alert (thisId);
     $(this).hide();
     var data = {}
     data.title =  $("#title-" + thisId).text();
     data.link = $("#link-" + thisId).text();
     data.excerpt = $("#excerpt-" + thisId).text();
     $.ajax({
-      method: "POST",
-      dataType: "json",
-      url: "/api/saved",
-      data: data
+      method: "PUT",
+      url: "/saved/" + thisId,
+      status: true
+    })
+    .then(function (data){
+      console.log("Articla Saved Successfully", data);
     })
   });
   

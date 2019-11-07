@@ -72,7 +72,7 @@ module.exports = function (app, axios, cheerio) {
 
 // gets saved articles from db and displays them
 app.get("/saved", function(req, res) {
-  Articles.find({"status": 1}, function(err, data) {
+  Articles.find({"status": true}, function(err, data) {
       if (err) { 
           console.log(err);
       } else {
@@ -82,20 +82,20 @@ app.get("/saved", function(req, res) {
 });
 
 // assigns saved status to article 
-app.post("/save", function(req, res) {
-  Articles.findOneAndUpdate({"_id": req.body.articleId}, {$set : {"status": 1}})
-  .exec(function(err, data) {
+app.put("/saved/:id", function(req, res) {
+  Articles.findOneAndUpdate({_id: req.params.id}, {$set : {status: true}})
+  .catch(function(err, data) {
       if (err) {
           console.log(err);
       } else {
-          res.send("Post successful");
+          res.send("Article Saved");
       }
   });
 });
 
 // removes articles from saved status 
 app.post("/unsave", function(req, res) {
-  Articles.findOneAndUpdate({"_id": req.body.articleId}, {$set : {"status": 0}})
+  Articles.findOneAndUpdate({"_id": req.body.articleId}, {$set : {"status": false}})
   .exec(function(err, data) {
       if (err) {
           console.log(err);
